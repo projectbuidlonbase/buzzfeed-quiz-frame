@@ -1,0 +1,63 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js install
+
+PATH: 
+  C:\Users\IMAGIC STUDIO\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\IMAGIC STUDIO\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Eclipse Adoptium\jdk-11.0.15.10-hotspot\bin;C:\Program Files\Git\usr\bin;C:\Users\IMAGIC STUDIO\AppData\Local\Programs\Python\Python311\Scripts;C:\Users\IMAGIC STUDIO\AppData\Local\Programs\Python\Python311;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\dotnet;C:\Program Files\Git\cmd;C:\Program Files\GitHub CLI;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Yarn\bin;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\nodejs;C:\Program Files\PostgreSQL\17\bin;C:\Users\IMAGIC STUDIO\AppData\Local\pnpm;C:\dev\flutter\bin;C:\Users\IMAGIC STUDIO\.cargo\bin;C:\Users\IMAGIC STUDIO\AppData\Local\Microsoft\WindowsApps;C:\Users\IMAGIC STUDIO\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\IMAGIC STUDIO\AppData\Local\Yarn\bin;C:\Users\IMAGIC STUDIO\AppData\Local\Android\Sdk\platform-tools;C:\Users\IMAGIC STUDIO\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin;C:\Users\IMAGIC STUDIO\AppData\Local\Programs\scarb\bin;C:\Users\IMAGIC STUDIO\AppData\Roaming\npm;C:\Users\IMAGIC STUDIO\AppData\Local\Programs\universal-sierra-compiler\bin;C:\Users\IMAGIC STUDIO\AppData\Local\Programs\starknet-foundry\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;C:\Users\IMAGIC STUDIO\.foundry\bin;C:\Users\IMAGIC STUDIO\.foundry\bin;C:\Users\IMAGIC STUDIO\.foundry\bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  22.11.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/viem/-/viem-2.22.6.tgz: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141517:19)
+      at Object.onceWrapper (node:events:632:28)
+      at ClientRequest.emit (node:events:518:28)
+      at TLSSocket.emitRequestTimeout (node:_http_client:851:9)
+      at Object.onceWrapper (node:events:632:28)
+      at TLSSocket.emit (node:events:530:35)
+      at Socket._onTimeout (node:net:595:8)
+      at listOnTimeout (node:internal/timers:594:17)
+      at process.processTimers (node:internal/timers:529:7)
+
+npm manifest: 
+  {
+    "name": "web",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "next lint"
+    },
+    "dependencies": {
+      "@coinbase/onchainkit": "^0.25.5",
+      "next": "14.2.5",
+      "react": "^18",
+      "react-dom": "^18",
+      "sharp": "^0.33.5"
+    },
+    "devDependencies": {
+      "@types/node": "^20",
+      "@types/react": "^18",
+      "@types/react-dom": "^18",
+      "daisyui": "^4.12.10",
+      "eslint": "^8",
+      "eslint-config-next": "14.2.5",
+      "postcss": "^8",
+      "tailwindcss": "^3.4.1",
+      "typescript": "^5"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
