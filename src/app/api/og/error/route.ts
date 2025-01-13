@@ -1,35 +1,58 @@
-import { ImageResponse } from 'next/og'
-import { NextRequest } from 'next/server'
-import React from 'react'
+import { NextRequest, NextResponse } from 'next/server';
+import sharp from 'sharp';
+import path from 'path';
 
-export const runtime = 'edge'
+export const runtime = 'edge';
 
-export async function GET(req: NextRequest) {
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100%',
-          height: '100%',
-          backgroundColor: 'white',
-          padding: '40px',
-        }}
-      >
-        <h1 style={{ fontSize: '60px', color: 'black', marginBottom: '20px' }}>
-          Something went wrong!
-        </h1>
-        <p style={{ fontSize: '30px', color: 'black' }}>
-          Please try again
-        </p>
-      </div>
-    ),
-    {
-      width: 1200,
-      height: 630,
-    }
-  )
+export async function GET(req: NextRequest): Promise<NextResponse> {
+  const imagePath = path.join(process.cwd(), 'public', 'error-bg.png');
+  const fontPath = path.join(process.cwd(), 'public', 'fonts', 'Arial.ttf');
+
+  try {
+    const image = await sharp(imagePath)
+      .resize(1200, 630)
+      .composite([
+        {
+          input: {
+            text: {
+              text: "Something went wrong!",
+              font: fontPath,
+              width: 1000,
+              height: 100,
+              rgba: true,
+            },
+          },
+          top: 100,
+          left: 100,
+        },
+        {
+          input: {
+            text: {
+              text: "Please try again",
+              font: fontPath,
+              width: 1000,
+              height: 200,
+              rgba: true,
+            },
+          },
+          top: 250,
+          left: 100,
+        },
+      ])
+      .png()
+      .toBuffer();
+
+    return new NextResponse(image, {
+      status: 200,
+      headers: {
+        'Content-Type': 'image/png',
+        'Cache-Control': 'max-age=10',
+      },
+    });
+  } catch (error) {
+    console.error('Error generating error image:', error);
+    return new NextResponse('Error generating image', { status: 500 });
+  }
 }
+
+export const dynamic = 'force-dynamic'; 
