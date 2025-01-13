@@ -1,58 +1,43 @@
-import { NextRequest, NextResponse } from 'next/server';
-import sharp from 'sharp';
-import path from 'path';
+import { ImageResponse } from '@vercel/og'
+import { NextRequest } from 'next/server'
+import React from 'react'
 
-export const runtime = 'edge';
+export const runtime = 'edge'
 
-export async function GET(req: NextRequest): Promise<NextResponse> {
-  const imagePath = path.join(process.cwd(), 'public', 'error-bg.png');
-  const fontPath = path.join(process.cwd(), 'public', 'fonts', 'Arial.ttf');
-
-  try {
-    const image = await sharp(imagePath)
-      .resize(1200, 630)
-      .composite([
-        {
-          input: {
-            text: {
-              text: "Something went wrong!",
-              font: fontPath,
-              width: 1000,
-              height: 100,
-              rgba: true,
-            },
-          },
-          top: 100,
-          left: 100,
-        },
-        {
-          input: {
-            text: {
-              text: "Please try again",
-              font: fontPath,
-              width: 1000,
-              height: 200,
-              rgba: true,
-            },
-          },
-          top: 250,
-          left: 100,
-        },
-      ])
-      .png()
-      .toBuffer();
-
-    return new NextResponse(image, {
-      status: 200,
-      headers: {
-        'Content-Type': 'image/png',
-        'Cache-Control': 'max-age=10',
-      },
-    });
-  } catch (error) {
-    console.error('Error generating error image:', error);
-    return new NextResponse('Error generating image', { status: 500 });
-  }
+export async function GET(req: NextRequest) {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          height: '100%',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#fff',
+          padding: '40px',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <h1 style={{ fontSize: 60, color: '#000', marginBottom: '20px' }}>
+            Something went wrong!
+          </h1>
+          <p style={{ fontSize: 30, color: '#000' }}>
+            Please try again
+          </p>
+        </div>
+      </div>
+    ),
+    {
+      width: 1200,
+      height: 630,
+    }
+  )
 }
-
-export const dynamic = 'force-dynamic'; 
